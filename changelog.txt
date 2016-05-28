@@ -1,0 +1,6 @@
+0.6 
+- TV series search bug 
+- Added hebrew support for settings 
+
+0.3 
+-Initial release Early Beta 

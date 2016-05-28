@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="General">
+        <setting id="BASEURL" type="text" label="32001" default="http://www.subscenter.org"/>
+        <setting id="USER" type="text"  label="32002" default="EMAIL"/>
+	<setting id="PASSWORD" type="text" option = "hidden" label="32004" default="PASSWORD"/>
+
+    </category>
+</settings>
