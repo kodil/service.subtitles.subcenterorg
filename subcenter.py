@@ -82,13 +82,14 @@ def Search(item):
         if item['season']:
             season=item['season']
             episode=item['episode']
+            titlestr=item['tvshow']
         else:
             season=re.findall(r"(?:s|season)(\d{2})", query, re.I)
             episode=re.findall(r"(?:e|x|episode|\n)(\d{2})", query, re.I)
-            titlestr=re.split(r"(?:s|S|season|Season|SEASON)(\d{2})",query)
+            titlestr=re.split(r"(?:s|S|season|Season|SEASON)(\d{2})",query)[0]
         values1 = {'token' : the_page['token'],
             'user' : the_page['user'],
-            'q' : titlestr[0],
+            'q' : titlestr,
             'type': 'series',
             'season': int(season[0]),
             'episode': int(episode[0])}
