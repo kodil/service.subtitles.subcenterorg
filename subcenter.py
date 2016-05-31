@@ -66,7 +66,9 @@ def getEpisode(filename):
 
 def Search(item):
     title=item['title']
-    query=str(item['title']).replace("."," ").split("-")[0].split("720")[0].split("1080")[0].split("x264")[0].strip()
+    query=str(item['title']).replace("."," ").split("-")[0].split("720")[0].split("1080")[0].split("x264")[0].strip().replace("'",'')
+    pattern = re.compile('\W')
+    query=re.sub(pattern, ' ', query)
     the_page=get_token()
     URLBASE=__addon__.getSetting("BASEURL")
     print("QUERY: " + query)
