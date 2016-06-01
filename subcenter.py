@@ -65,7 +65,7 @@ def getEpisode(filename):
 
 
 def Search(item):
-    title=item['title']
+    title_name=item['title']
     query=str(item['title']).replace("."," ").split("-")[0].split("720")[0].split("1080")[0].split("x264")[0].strip().replace("'",'')
     pattern = re.compile('\W')
     query=re.sub(pattern, ' ', query)
@@ -73,7 +73,7 @@ def Search(item):
     URLBASE=__addon__.getSetting("BASEURL")
     print("QUERY: " + query)
     URL_SRCH=URLBASE+"/he/api/search/"
-    if len(item['tvshow']) <1 and  getEpisode(title) is None:
+    if len(item['tvshow']) <1 and  getEpisode(title_name) is None:
         #incase of movies im stripping the year as subcenter does not take kindly to it.
         query_movie=re.split(r"(?:19|20)(\d{2})",query)[0]
         values1 = {'token' : the_page['token'],
@@ -112,7 +112,10 @@ def Search(item):
                                     iconImage=sub['downloads'],                                     # rating for the subtitle, string 0-5
                                     thumbnailImage="en.gif"                            # language flag, ISO_639_1 language + gif extention, e.g - "en.gif"
                                     )
-                        listitem.setProperty( "sync",        '{0}'.format("true").lower() )  # set to "true" if subtitle is matched by hash,
+                        if item['title'].replace(".","").replace(" ","").lower().find(sub['version'].replace(".","").replace(" ","").lower()) is -1:
+                            listitem.setProperty( "sync",        '{0}'.format("false").lower() )
+                        else:  # set to "true" if subtitle is matched by hash,
+                            listitem.setProperty( "sync",        '{0}'.format("true").lower() )
                                                                                          # indicates that sub is 100 Comaptible
                         listitem.setProperty( "hearing_imp", '{0}'.format("false").lower() ) # set to "true" if subtitle is for hearing impared
                         url = "plugin://%s/?action=download&lang=%s&ID=%s&filename=%s&key=%s" % (__scriptid__,
@@ -130,9 +133,10 @@ def Search(item):
                                 iconImage=sub['downloads'],                                     # rating for the subtitle, string 0-5
                                 thumbnailImage="he.gif"                            # language flag, ISO_639_1 language + gif extention, e.g - "en.gif"
                                 )
-                        listitem.setProperty( "sync",        '{0}'.format("true").lower() )  # set to "true" if subtitle is matched by hash,
-                                                                                         # indicates that sub is 100 Comaptible
-                        listitem.setProperty( "hearing_imp", '{0}'.format("false").lower() ) # set to "true" if subtitle is for hearing impared
+                        if item['title'].replace(".","").replace(" ","").lower().find(sub['version'].replace(".","").replace(" ","").lower()) is -1:
+                            listitem.setProperty( "sync",        '{0}'.format("false").lower() )
+                        else:  # set to "true" if subtitle is matched by hash,
+                            listitem.setProperty( "sync",        '{0}'.format("true").lower() )
                         url = "plugin://%s/?action=download&lang=%s&ID=%s&filename=%s&key=%s" % (__scriptid__,
                                                                                         lang,
                                                                                         sub['id'],
