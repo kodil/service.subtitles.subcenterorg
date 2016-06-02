@@ -1,3 +1,7 @@
+0.73
+- better sync detection (closest possiblle)
+- replaced icon ( thanks lidormalichi ) 
+- cleand up a little 
 0.71
 - Special chars removal
  

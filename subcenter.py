@@ -34,9 +34,6 @@ __temp__       = xbmc.translatePath( os.path.join( __profile__, 'temp') ).decode
 
 sys.path.append (__resource__)
 
-URL = "http://www.subscenter.org"
-
-
 def get_token():
     URLBASE=__addon__.getSetting("BASEURL")
     SUBUSER=__addon__.getSetting("USER")
