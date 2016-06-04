@@ -2,8 +2,8 @@
 <settings>
     <category label="General">
         <setting id="BASEURL" type="text" label="32001" default="http://www.subscenter.org"/>
-        <setting id="USER'S MAIL" type="text"  label="32002" default=""/>
-	<setting id="PASSWORD" type="text" option = "hidden" label="32004" default=""/>
+        <setting id="USER" type="text"  label="32002" default="EMAIL"/>
+	<setting id="PASSWORD" type="text" option = "hidden" label="32004" default="PASSWORD"/>
 
     </category>
 </settings>
