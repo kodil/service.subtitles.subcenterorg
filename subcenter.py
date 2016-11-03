@@ -145,7 +145,7 @@ def Search(item):
 
 def Download(ID,lang,filename,key):
   URLBASE=__addon__.getSetting("BASEURL")
-  url=URLBASE+"/he/api/subtitle/download/"+lang+"/?sub_id="+ID+"&v="+ urllib.quote(filename, safe='')+"&key="+key
+  url=URLBASE+"/he/api/subtitle/download/"+lang+"/?sub_id="+ID+"&v="+ urllib.quote(''.join(hex(ord(chr))[2:] for chr in filename), safe='')+"&key="+key
   subtitle_list = []
   if xbmcvfs.exists(__temp__):
      shutil.rmtree(__temp__)
@@ -156,6 +156,8 @@ def Download(ID,lang,filename,key):
   req = urllib2.Request(url, data)
   response = urllib2.urlopen(req)
   zipdata= response.read()
+  log(url)
+  log(data)
   zipfilename=os.path.join(__temp__,filename)
   output = open(zipfilename,'wb')
   output.write(zipdata)

@@ -1,3 +1,5 @@
+0.74
+-minor settings fix 
 0.73
 - better sync detection (closest possiblle)
 - replaced icon ( thanks lidormalichi ) 
